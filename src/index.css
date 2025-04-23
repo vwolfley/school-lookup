@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --mag-teal: #108284;
+  --mag-teal-dark: #055861;
+  --mag-teal-light: #29a2ab;
+  --mag-secondary: #6a1d87;
+  --mag-secondary-light: #a32cce;
+  --heading-font: Raleway, sans-serif;
+  --paragraph-font: "Open Sans", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
+  font-family: var(--paragraph-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+}
+
+/* for color around map div */
+.esri-view {
+  --esri-view-outline-color: none;
+}

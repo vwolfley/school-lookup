@@ -1,0 +1,18 @@
+{
+  "OBJECTID": 403,
+  "accountabilityLetterGrade": null,
+  "districtId": 4209,
+  "districtName": "Payson Unified District",
+  "educationOrganizationId": 4858,
+  "entityType": "School",
+  "fiscalYear": 2025,
+  "gradesOffered": "Kindergarten - Grade 2",
+  "isCSI": null,
+  "isTSI": null,
+  "isTitle1": "true",
+  "leaEducationOrganizationId": 4209,
+  "model": null,
+  "nameOfInstitution": "Payson Elementary School",
+  "noOfSchools": 0,
+  "schoolTypes": "District School"
+}
