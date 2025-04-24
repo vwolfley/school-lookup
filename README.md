@@ -1,13 +1,13 @@
 # school-lookup
 
-
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/AZMAG/mag-vite-react-template?&logo=github&style=flat-square)](https://github.com/AZMAG/mag-vite-react-template/releases)
-![GitHub Release Date](https://img.shields.io/github/release-date/AZMAG/mag-vite-react-template?&logo=github&style=flat-square)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/AZMAG/mag-vite-react-template?style=flat-square)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/vwolfley/school-lookup?&logo=github&style=flat-square)](https://github.com/vwolfley/school-lookup/releases)
+![GitHub Release Date](https://img.shields.io/github/release-date/vwolfley/school-lookup?&logo=github&style=flat-square)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/vwolfley/school-lookup?style=flat-square)
 ![semver](https://img.shields.io/badge/semver-2.0.0-blue?style=flat-square)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ## :key: Keywords
+
 
 ## Version
 
@@ -24,6 +24,39 @@ And constructed with the following guidelines:
 1. **MAJOR** version when you make incompatible API changes **bumps the major** resets minor and patch
 2. **MINOR** version when you add functionality in a backwards-compatible manner **bumps the minor** resets patch
 3. **PATCH** version when you make backwards-compatible bug fixes and misc changes **bumps only the patch**
+
+## Development Instructions
+
+### :gear: Quickstart Instructions
+
+1. [clone this repo](https://github.com/vwolfley/school-lookup).
+2. `cd` into the `school-lookup` folder.
+3. Install the dependencies with `npm install`.
+
+### Available Scripts
+
+#### `npm run dev`
+
+Compiles raw source code into both "debug" and "production" versions.\
+Runs the app in the development mode.
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+#### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+#### `npm run replace`
+
+A simple utility to quickly replace text in one or more files.\
+Make a single replacement or multiple replacements at once.
 
 ## Technologies
 
