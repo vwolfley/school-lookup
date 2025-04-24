@@ -1,6 +1,6 @@
 /*
 *****************************************
- Get school data from the ArcGIS API
+ Get district data from the ArcGIS API
 *****************************************
 */
 import { executeQueryJSON } from "@arcgis/core/rest/query";
@@ -11,11 +11,7 @@ async function fetchData(searchValue) {
 
     // Check if searchValue is a number (ID) or string (name)
     const isNumeric = /^\d+$/.test(searchValue);
-    const where = isNumeric
-        ? `educationOrganizationId = ${searchValue}`
-        : `nameOfInstitution LIKE '%${searchValue}%'`;
-
-    //   const queryUrl = "https://azreportcards.azed.gov/api/Entity/GetEntity?id=${searchvalue}&fiscalYear=2024"
+    const where = `leaEducationOrganizationId = ${searchValue}`
 
     try {
         const response = await executeQueryJSON(queryUrl, {
@@ -27,7 +23,7 @@ async function fetchData(searchValue) {
         // console.log(response.features)
         return response.features;
     } catch (error) {
-        console.error("Error fetching schools info:", error);
+        console.error("Error fetching district info:", error);
         return [];
     }
 }

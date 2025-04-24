@@ -1,39 +1,61 @@
 import { useEffect, useState } from "react";
 // import getSchools from "../../../data/getAllSchools"
 import getSchool from "../../../data/getSchool";
+import getDistrict from "../../../data/getDistrict";
 
 import SearchBox from "./searchbox";
+import SchoolList from "./school-list";
 
 function School() {
-  const [data, setData] = useState({});
-  const [searchValue, setSearchValue] = useState('');
+  const [schoolData, setSchoolData] = useState({});
+  const [districtData, setDistrictData] = useState({});
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (!searchValue) {
-      setData({});
+      setSchoolData({});
+      setDistrictData({});
       return;
     }
-    // console.log("Searching for:", searchValue);
-    // getSchools()
-    getSchool(searchValue)
-      .then((results) => {
+
+    const fetchData = async () => {
+      try {
+        const results = await getSchool(searchValue);
+
         if (results.length) {
-          setData(results[0]);
+          const school = results[0];
+          setSchoolData(school);
+
+          if (school.leaEducationOrganizationId) {
+            const district = await getDistrict(
+              school.leaEducationOrganizationId,
+            );
+            setDistrictData(district || {});
+          } else {
+            setDistrictData({});
+          }
         } else {
-          setData({});
+          setSchoolData({});
+          setDistrictData({});
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching schools:", error);
-      });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({});
+        setDistrictData({});
+      }
+    };
+
+    fetchData();
   }, [searchValue]);
   // console.log(searchValue)
+  // console.log(schoolData)
+  console.log(districtData)
 
   return (
     <section className="flex flex-col items-center justify-center bg-gray-100 p-4">
       <h1 className="text-2xl font-bold">School Info from ADE</h1>
       <h2 className="text-lg font-semibold">
-        For Fiscal Year: {data.fiscalYear}
+        For Fiscal Year: {schoolData.fiscalYear}
       </h2>
       <div className="grid grid-cols-1 gap-12 p-4 md:grid-cols-3">
         {/* Left Column: Search Box */}
@@ -42,44 +64,45 @@ function School() {
         {/* Right Column: School Info */}
         <section className="space-y-4 md:col-span-2">
           <h2 className="mb-0 text-2xl font-semibold">
-            {data.nameOfInstitution}
+            {schoolData.nameOfInstitution}
             <span className="ml-2 text-gray-500">
-              {data.educationOrganizationId}
+              {schoolData.educationOrganizationId}
             </span>
           </h2>
           <h3 className="text-md font-medium">
-            {data.districtName}
-            <span className="ml-2 text-gray-500">{data.districtId}</span>
+            {schoolData.districtName}
+            <span className="ml-2 text-gray-500">{schoolData.districtId}</span>
           </h3>
 
           <section>
             <h2 className="mb-2 text-xl font-semibold">School Details</h2>
             <ul className="space-y-1">
               <li>
-                <strong>School Type:</strong> {data.schoolTypes}
+                <strong>School Type:</strong> {schoolData.schoolTypes}
               </li>
               <li>
-                <strong>Grades Served:</strong> {data.gradesOffered}
+                <strong>Grades Served:</strong> {schoolData.gradesOffered}
               </li>
               <li>
-                <strong>Model:</strong> {data.model || "N/A"}
+                <strong>Model:</strong> {schoolData.model || "N/A"}
               </li>
               <li>
                 <strong>School Grade:</strong>{" "}
-                {data.accountabilityLetterGrade || "N/A"}
+                {schoolData.accountabilityLetterGrade || "N/A"}
               </li>
               <li>
-                <strong>Title I Status:</strong> {data.isTitle1 ? "Yes" : "No"}
+                <strong>Title I Status:</strong> {schoolData.isTitle1 ? "Yes" : "No"}
               </li>
               <li>
-                <strong>CSI:</strong> {data.isCSI ? "Yes" : "No"}
+                <strong>CSI:</strong> {schoolData.isCSI ? "Yes" : "No"}
               </li>
               <li>
-                <strong>TSI:</strong> {data.isTSI ? "Yes" : "No"}
+                <strong>TSI:</strong> {schoolData.isTSI ? "Yes" : "No"}
               </li>
             </ul>
           </section>
         </section>
+        <SchoolList districtData={districtData} />
       </div>
     </section>
   );
