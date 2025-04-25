@@ -62,7 +62,7 @@ function School() {
         <SearchBox onSearch={setSearchValue} />
 
         {/* Right Column: School Info */}
-        <section className="space-y-4 md:col-span-2">
+        <section className="space-y-4 md:col-span-1">
           <h2 className="mb-0 text-2xl font-semibold">
             {schoolData.nameOfInstitution}
             <span className="ml-2 text-gray-500">
